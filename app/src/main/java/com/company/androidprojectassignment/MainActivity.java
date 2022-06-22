@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTick(long l) {
 
+                et_answer.setEnabled(false);
+                bt_submit.setEnabled(false);
                 runTextToSpeech();
 
             }
@@ -43,8 +45,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
 
-                et_answer.setEnabled(true);
-                bt_submit.setEnabled(true);
+                new CountDownTimer(2000, 1000) {
+                    @Override
+                    public void onTick(long l) {
+                        et_answer.setEnabled(false);
+                        bt_submit.setEnabled(false);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        et_answer.setEnabled(true);
+                        bt_submit.setEnabled(true);
+                    }
+                }.start();
+
+
 
             }
         }.start();
